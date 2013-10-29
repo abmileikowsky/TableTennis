@@ -1,0 +1,55 @@
+GIVEN user inputs two hashtags into respective fields
+AND hashtags exist on Twitter or Tumblr or both
+WHEN user clicks search
+THEN list of tweets and tumblr post are returned
+AND filters options are enabled
+
+GIVEN user inputs only one or no hashtags
+WHEN user clicks search
+THEN screen alerts "Please enter more hashtags."
+AND empty fields are bordered with red
+
+GIVEN user inputs two hashtags into respective fields
+AND hashtags don't exist on Twitter and Tumblr
+WHEN user clicks search
+THEN page displays "No results found."
+AND input fields are cleared.
+
+GIVEN user has visisted website before
+WHEN user loads index.html
+THEN recent searches are listed at the top
+AND searches are clickable to research with previous input
+
+GIVEN a user enters index.html
+WHEN page loads
+THEN page displays top tweets and tumblr posts
+AND top tweets and tumblr posts are clickable to search
+
+GIVEN twitter or tumblr or both is unable to load
+WHEN user clicks search
+THEN screen displays "Cannot connect to %website" where %website is twitter or tumblr or both.
+
+GIVEN user has entered data
+WHEN user clicks clear
+THEN input fields are cleared
+
+GIVEN tweets and tumblr posts are listed
+WHEN user selects location radius
+THEN filter listings by posts within radius
+
+GIVEN tweets and tumblr posts are listed
+WHEN user selects recency option
+THEN filter listings by most or least recent, depending on selection
+
+GIVEN tweets are listed
+AND user is logged into twitter
+WHEN user selects retweet
+THEN retweet selected tweet on user's account
+
+GIVEN tweets and/or tumblr posts are listed
+WHEN User clicks on post
+THEN post is enlarged
+
+GIVEN tweets and tumblr posts are listed
+WHEN user clicks on twitter or tumblr filter
+THEN hide posts from unselected website
