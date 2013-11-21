@@ -3,14 +3,25 @@ var ejs = require('ejs');
 var app = express(); 
 var analyze = require('sentimental').analyze;
 
-var Twitter = require('ntwitter');
+var Twitter = require('mtwitter');
 
 var twitter = new Twitter({
   consumer_key: 'HYPKYRKgOXzVrtUij1xUZw',
-  consumer_secret: 'HYPKYRKgOXzVrtUij1xUZw',
+  consumer_secret: 't9Hfwl2CYFandfwxHyrP4SYPEmQCaj8pUTh91f8Rqs',
   access_token_key: '341830940-xpWrMI7r1KzNOsFAlIUHmnPm7j1Bpu56803v026c',
   access_token_secret: 'u7dZuEyXyoWOWQ7LsWzVAzeMpDkVyRhBx426yHTz3LlXb'
 });
+
+
+
+ 
+/*twitter.get('search/tweets', {q: 'yolo'}, function(err, item) {
+  console.log(err, item);
+});*/
+
+twitter.get('users/show', {screen_name: 'mjdean1994'}, function(err, item) {
+  console.log(err, item);
+ });
 
 // handle posts in express
 app.use(express.bodyParser());
@@ -31,32 +42,23 @@ app.get('/', function(req, res) {
     
 });
 
+
 // handles form post
-/*app.post('/formPost', function(req, res){
+
+app.post('/formPost', function(req, res){
 	//console.log(req.body);
-	 /*
-	 { 
-	 email: 'email@champlain.edu',
-	  hashtags: '#CampChamp',
-	  apiToUse: 'facebook',
-	  numResults: '3',
-	  location: [ 'eu', 'am', 'sa' ],
-	  dateOfContent: '2013-10-11',
-	  area: 'This\r\nis\r\nso\r\nmulti-\r\nline!' 
-	  }
-	*/
-	//var model = "meep";//req.body;
-	 
-	 
-	 //Sentimental
-	 //model.sentimentScore = analyze(model.area).score;
-	 
-	 //console.log("model:");
-	//console.log(model);
 	
-	// Renders EJS file
-	/*res.render('index.ejs', model);
-	res.end();
+	twitter.get('search/tweets', {q: req.body.hashtag1}, function(err, item) {
+  console.log(err, item);
+	});
+	
+	 var model = {
+                    "name":"placeholder"
+                }
+    
+    res.render('index.ejs', model); 
 });
-*/
-app.listen(3000);
+
+
+
+app.listen(3000);	

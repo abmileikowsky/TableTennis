@@ -7,7 +7,8 @@
     "ejs": "latest",
 	"ntwitter": "latest",
     "sentimental": "latest",
-    "fs": "latest"
+    "fs": "latest",
+	"mtwitter": "latest"
   },
   "engines": {
     "node": "0.10.13",

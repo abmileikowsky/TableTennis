@@ -308,9 +308,9 @@
                     <div id='search' class='bodySection'>
                         <span class='sectionHead'>Discover</span>
                         <hr>
-						<form>
-							<input type="text" id="Hashtag1" placeholder="#hashtag" required>
-							<input type="text" id="Hashtag2" placeholder = "#hashtag" required>
+						<form action="/formPost" method="post">
+							<input type="text" name="hashtag1" id="Hashtag1" placeholder="#hashtag" required>
+							<input type="text" name="hashtag2" id="Hashtag2" placeholder = "#hashtag" required>
 							<select name="source">
 								<option value="twitter">Twitter</option>
 								<option value="Instagram">Instagram</option>
@@ -321,6 +321,7 @@
 							
 							<input type="submit" value="Search" onclick="formSearch()">
 						</form>
+						<hr/>
                     </div>
                 </div>
             </div>
