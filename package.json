@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-example",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "express": "latest",
+    "ejs": "latest",
+	"ntwitter": "latest",
+    "sentimental": "latest",
+    "fs": "latest"
+  },
+  "engines": {
+    "node": "0.10.13",
+    "npm": "1.3.2"
+  }
+}
