@@ -14,45 +14,149 @@
                 }); 
             });
 			
-			function loadLatestTweets()
+			function LoadLatestTweets()
 			{
-				var latestTweets[10];
+				if(localStorage.latest1)
+				{
+					latestTweets1 = localStorage.latest1;
+				}
+				else
+				{
+					localStorage.latest1 = " ";
+					latestTweets1 = localStorage.latest1;
+				}
 				
-				/*TMP CODE*/
-				localStorage.latest1 = "#YOLO";
-				localStorage.latest2 = "#MEEP";
-				localStorage.latest3 = "#onelove";
-				localStorage.latest4 = "#watdo";
-				localStorage.latest5 = "#ballin";
-				localStorage.latest6 = "#laceup";
-				localStorage.latest7 = "#another";
-				localStorage.latest8 = "#twochainz";
-				localStorage.latest9 = "#holla";
-				localStorage.latest10 = "#summerlove";
+				if(localStorage.latest2)
+				{
+					latestTweets2 = localStorage.latest2;
+				}
+				else
+				{
+					localStorage.latest2 = " ";
+					latestTweets2 = localStorage.latest2;
+				}
 				
-				latestTweets[0] = localStorage.latest1;
-				latestTweets[1] = localStorage.latest2;
-				latestTweets[2] = localStorage.latest3;
-				latestTweets[3] = localStorage.latest4;
-				latestTweets[4] = localStorage.latest5;
-				latestTweets[5] = localStorage.latest6;
-				latestTweets[6] = localStorage.latest7;
-				latestTweets[7] = localStorage.latest8;
-				latestTweets[8] = localStorage.latest9;
-				latestTweets[9] = localStorage.latest10;
+				if(localStorage.latest3)
+				{
+					latestTweets3 = localStorage.latest3;
+				}
+				else
+				{
+					localStorage.latest3 = " ";
+					latestTweets3 = localStorage.latest3;
+				}
 				
-				document.getElementById("recent1").innerHTML = latestTweets[0];
-				document.getElementById("recent2").innerHTML = latestTweets[1];
-				document.getElementById("recent3").innerHTML = latestTweets[2];
-				document.getElementById("recent4").innerHTML = latestTweets[3];
-				document.getElementById("recent5").innerHTML = latestTweets[4];
-				document.getElementById("recent6").innerHTML = latestTweets[5];
-				document.getElementById("recent7").innerHTML = latestTweets[6];
-				document.getElementById("recent8").innerHTML = latestTweets[7];
-				document.getElementById("recent9").innerHTML = latestTweets[8];
-				document.getElementById("recent10").innerHTML = latestTweets[9];
+				if(localStorage.latest4)
+				{
+					latestTweets4 = localStorage.latest4;
+				}
+				else
+				{
+					localStorage.latest4 = " ";
+					latestTweets4 = localStorage.latest4;
+				}
+				
+				if(localStorage.latest5)
+				{
+					latestTweets5 = localStorage.latest5;
+				}
+				else
+				{
+					localStorage.latest5 = " ";
+					latestTweets5 = localStorage.latest5;
+				}
+				
+				if(localStorage.latest6)
+				{
+					latestTweets6 = localStorage.latest6;
+				}
+				else
+				{
+					localStorage.latest6 = " ";
+					latestTweets6 = localStorage.latest6;
+				}
+				
+				if(localStorage.latest7)
+				{
+					latestTweets7 = localStorage.latest7;
+				}
+				else
+				{
+					localStorage.latest7 = " ";
+					latestTweets7 = localStorage.latest7;
+				}
+				
+				if(localStorage.latest8)
+				{
+					latestTweets8 = localStorage.latest8;
+				}
+				else
+				{
+					localStorage.latest8 = " ";
+					latestTweets8 = localStorage.latest8;
+				}
+				
+				if(localStorage.latest9)
+				{
+					latestTweets9 = localStorage.latest9;
+				}
+				else
+				{
+					localStorage.latest9 = " ";
+					latestTweets9 = localStorage.latest9;
+				}
+				
+				if(localStorage.latest10)
+				{
+					latestTweets10 = localStorage.latest10;
+				}
+				else
+				{
+					localStorage.latest10 = " ";
+					latestTweets10 = localStorage.latest10;
+				}
+                
+				document.getElementById("recent1").innerHTML = latestTweets1;
+				document.getElementById("recent2").innerHTML = latestTweets2;
+				document.getElementById("recent3").innerHTML = latestTweets3;
+				document.getElementById("recent4").innerHTML = latestTweets4;
+				document.getElementById("recent5").innerHTML = latestTweets5;
+				document.getElementById("recent6").innerHTML = latestTweets6;
+				document.getElementById("recent7").innerHTML = latestTweets7;
+				document.getElementById("recent8").innerHTML = latestTweets8;
+				document.getElementById("recent9").innerHTML = latestTweets9;
+				document.getElementById("recent10").innerHTML = latestTweets10;
 			}
 			
+			function formSearch()
+			{
+				LoadLatestTweets();
+				
+				if(document.getElementById("Hashtag1").value && document.getElementById("Hashtag2").value)
+				{
+					localStorage.latest10 = localStorage.latest9;
+					localStorage.latest9 = localStorage.latest8;
+					localStorage.latest8 = localStorage.latest7;
+					localStorage.latest7 = localStorage.latest6;
+					localStorage.latest6 = localStorage.latest5;
+					localStorage.latest5 = localStorage.latest4;
+					localStorage.latest4 = localStorage.latest3;
+					localStorage.latest3 = localStorage.latest2;
+					localStorage.latest2 = localStorage.latest1;
+					
+					localStorage.latest10 = localStorage.latest9;
+					localStorage.latest9 = localStorage.latest8;
+					localStorage.latest8 = localStorage.latest7;
+					localStorage.latest7 = localStorage.latest6;
+					localStorage.latest6 = localStorage.latest5;
+					localStorage.latest5 = localStorage.latest4;
+					localStorage.latest4 = localStorage.latest3;
+					localStorage.latest3 = localStorage.latest2;
+					
+					localStorage.latest2 = document.getElementById("Hashtag2").value;
+					localStorage.latest1 = document.getElementById("Hashtag1").value;
+				}
+			}
         </script>
         
         <style>
@@ -133,62 +237,16 @@
                 color:#333;
                 text-align:center;
                 border:1px white solid;
+				width:50%;
             }
             
-            td:hover {
-                border:1px #DDD solid;
-                color:black;
-                cursor:pointer;
-            }
-            
-            #panelContent {
-                background-color:#33CCFF;
-                margin:-40px;
-                padding:20px;
-                color:white;
-                text-shadow:1px 1px 1px #888;
-                font-weight:bold;
-                height:800px;
-                overflow:hidden;
-                position:fixed;
-                width:300px;
-                top:0px;
-                box-shadow:0px 0px 10px #333;
-            }
-            
-            #panelContent hr {
-                border-color:white;
-            }
-            
-            #panelContent div {
-                height:20px;
-                padding-top:5px;
-                padding:5px;
-            }
-            
-            #panelContent div:hover {
-                background-color:#0099FF;
-                cursor:pointer;
-            }
         </style>
     </head>
     <body onload="LoadLatestTweets()"> 
-        <div data-role='panel' id='menuPanel' data-position='left' data-display='overlay'>
-                <div id='panelContent'>
-                <div><a href="#header">Top</a></div>
-                    <hr />
-                <div><a href="#recentSearches">Recent Searches</a></div>
-                    <hr />
-                <div><a href="#topSearches">Most Popular Hashtags</a></div>
-                    <hr />
-                <div><a href="#search">Discover</a></div>
-            </div>
-        </div>
-        
         <div id='content'>
             <div id='header'>
                 <div id='headerResize'>
-                    <h1>CacheTag</h1>
+                    <h1 onclick="LoadLatestTweets();">CacheTag</h1>
                     <h2>Hashtags Compiled</h2>
                 </div>
             </div>
@@ -199,24 +257,24 @@
                         <hr />
                         <table border='0'>
                             <tr>
-                                <td id="recent1">#Tag</td>
-                                <td id="recent2">Tag</td>
+                                <td id="recent1"></td>
+                                <td id="recent2"></td>
                             </tr>
                             <tr>
-                                <td id="recent3">Tag</td>
-                                <td id="recent4">Tag</td>
+                                <td id="recent3"></td>
+                                <td id="recent4"></td>
                             </tr>
                             <tr>
-                                <td id="recent5">Tag</td>
-                                <td id="recent6">Tag</td>
+                                <td id="recent5"></td>
+                                <td id="recent6"></td>
                             </tr>
                             <tr>
-                                <td id="recent7">Tag</td>
-                                <td id="recent8">Tag</td>
+                                <td id="recent7"></td>
+                                <td id="recent8"></td>
                             </tr>
                             <tr>
-                                <td id="recent9">Tag</td>
-                                <td id="recent10">Tag</td>
+                                <td id="recent9"></td>
+                                <td id="recent10"></td>
                             </tr>
                         </table>
                     </div>
@@ -250,6 +308,19 @@
                     <div id='search' class='bodySection'>
                         <span class='sectionHead'>Discover</span>
                         <hr>
+						<form>
+							<input type="text" id="Hashtag1" placeholder="#hashtag" required>
+							<input type="text" id="Hashtag2" placeholder = "#hashtag" required>
+							<select name="source">
+								<option value="twitter">Twitter</option>
+								<option value="Instagram">Instagram</option>
+								<option value="both">Twitter & Instagram</option>
+							</select>
+							<label for="slider-1">Distance:</label>
+							<input type="range" name="distance" id="distance" min="0" max="100" value="50">
+							
+							<input type="submit" value="Search" onclick="formSearch()">
+						</form>
                     </div>
                 </div>
             </div>
