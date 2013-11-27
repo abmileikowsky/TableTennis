@@ -50,13 +50,9 @@ app.post('/formPost', function(req, res){
 	
 	twitter.get('search/tweets', {q: req.body.hashtag1}, function(err, item) {
   console.log(err, item);
+	
 	});
 	
-	 var model = {
-                    "name":"placeholder"
-                }
-    
-    res.render('index.ejs', model); 
 });
 
 
