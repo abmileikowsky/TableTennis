@@ -19,9 +19,7 @@ var twitter = new Twitter({
   console.log(err, item);
 });*/
 
-twitter.get('users/show', {screen_name: 'mjdean1994'}, function(err, item) {
-  console.log(err, item);
- });
+;
 
 // handle posts in express
 app.use(express.bodyParser());
@@ -35,10 +33,10 @@ app.use(express.bodyParser());
 app.get('/', function(req, res) {
     
      var model = {
-                    "name":"placeholder"
-                }
-    
-    res.render('index.ejs', model);   
+			text: ['d','d']
+	} 
+	
+	res.render('index.ejs',model);
     
 });
 
@@ -48,10 +46,27 @@ app.get('/', function(req, res) {
 app.post('/formPost', function(req, res){
 	//console.log(req.body);
 	
+	
+	
 	twitter.get('search/tweets', {q: req.body.hashtag1}, function(err, item) {
-  console.log(err, item);
+		
+		var model = {
+			text: []
+		}
+		
+		
+		
+		for(var i=0; i<item.statuses.length;i++)
+		{
+			model.text[i] = item.statuses[i].text;
+			console.log(item.statuses[i].text);
+			console.log(" ");
+		}
+		
+		res.render('index.ejs', model);
 	
 	});
+	
 	
 });
 
