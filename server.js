@@ -33,7 +33,10 @@ app.use(express.bodyParser());
 app.get('/', function(req, res) {
     
      var model = {
-			text: ['d','d']
+			name: ['','','','','','','','','',''],
+			picture: ['','','','','','','','','',''],
+			text: ['','','','','','','','','',''],
+			sentiment: [0,0,0,0,0,0,0,0,0,0]
 	} 
 	
 	res.render('index.ejs',model);
@@ -46,30 +49,46 @@ app.get('/', function(req, res) {
 app.post('/formPost', function(req, res){
 	//console.log(req.body);
 	
+	var model = {
+				name: [],
+				picture: [],
+				text: [],
+				sentiment: []
+			}
 	
-	
-	twitter.get('search/tweets', {q: req.body.hashtag1}, function(err, item) {
-		
-		var model = {
-			text: []
-		}
-		
-		
-		
-		for(var i=0; i<item.statuses.length;i++)
+	if(req.body.source == "twitter")
 		{
-			model.text[i] = item.statuses[i].text;
-			console.log(item.statuses[i].text);
-			console.log(" ");
-		}
+		twitter.get('search/tweets', {q: req.body.hashtag1}, function(err, item) {
+			
+			var i = 0
+			for(; i<item.statuses.length && i<10;i++)
+			{
+				model.name[i] = item.statuses[i].user.name;
+				model.picture[i] = item.statuses[i].user.profile_image_url;
+				model.text[i] = item.statuses[i].text;
+				model.sentiment[i] = analyze(model.text[i]).score;
+			}
+			
+			for(; i<10;i++)
+			{
+				model.name[i] = '';
+				model.picture[i] = '';
+				model.text[i] = '';
+				model.sentiment[i] = 0;
+			}
+			
+			res.render('index.ejs', model);
 		
-		res.render('index.ejs', model);
-	
-	});
+		});
+	}
+	else if(req.body.source == "instagram")
+	{
+		//INSTAGRAM SEARCH CODE HERE//
+	}
 	
 	
 });
 
 
-
-app.listen(3000);	
+var port = process.env.PORT || 5000;
+app.listen(port);
