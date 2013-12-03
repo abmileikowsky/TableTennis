@@ -9,11 +9,7 @@
         
         <script>
             $( document ).ready(function(){
-				var numOfTweets = <%= text.length %>;
-				for(var i=0; i< numOfTweets; i++)
-				{
-					document.getElementById("tweets").innerHTML = document.getElementById("tweets").innerHTML + "2";
-				}
+
             });
 			
 			function LoadLatestTweets()
@@ -134,11 +130,7 @@
 			{
 				LoadLatestTweets();
 				
-				var numOfTweets = <%= text.length %>;
-				for(var i=0; i< numOfTweets; i++)
-				{
-					document.getElementById("tweets").innerHTML = document.getElementById("tweets").innerHTML + "2";
-				}
+				
 				
 				if(document.getElementById("Hashtag1").value && document.getElementById("Hashtag2").value)
 				{
@@ -250,6 +242,16 @@
 				width:50%;
             }
             
+			.tweetProfImage {
+				float:left;
+				margin-right: 10px;
+			}
+			.username {
+				margin:0px;
+			}
+			.tweeted {
+				margin:20px;
+			}
         </style>
     </head>
     <body onload="LoadLatestTweets()"> 
@@ -322,11 +324,10 @@
                         <hr>
 						<form action="/formPost" method="post">
 							<input type="text" name="hashtag1" id="Hashtag1" placeholder="#hashtag" required>
-							<input type="text" name="hashtag2" id="Hashtag2" placeholder = "#hashtag" required>
+							<!--<input type="text" name="hashtag2" id="Hashtag2" placeholder = "#hashtag" required>-->
 							<select name="source">
 								<option value="twitter">Twitter</option>
 								<option value="Instagram">Instagram</option>
-								<option value="both">Twitter & Instagram</option>
 							</select>
 							<label for="slider-1">Distance:</label>
 							<input type="range" name="distance" id="distance" min="0" max="100" value="50">
@@ -336,7 +337,86 @@
 						<hr/>
 						
 						<article id="tweets">
-						
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[0] %>/>
+								<h3 class="username"><%= name[0] %></h3>
+								<img src=<%= picture[0] %>/>
+								<p class="tweeted"><%= text[0] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[0] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[1] %>/>
+								<h3 class="username"><%= name[1] %></h3>
+								<img src=<%= picture[1] %>/>
+								<p class="tweeted"><%= text[1] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[1] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[2] %>/>
+								<h3 class="username"><%= name[2] %></h3>
+								<img src=<%= picture[2] %>/>
+								<p class="tweeted"><%= text[2] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[2] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[3] %>/>
+								<h3 class="username"><%= name[3] %></h3>
+								<img src=<%= picture[3] %>/>
+								<p class="tweeted"><%= text[3] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[3] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[4] %>/>
+								<h3 class="username"><%= name[4] %></h3>
+								<img src=<%= picture[4] %>/>
+								<p class="tweeted"><%= text[4] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[4] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[5] %>/>
+								<h3 class="username"><%= name[5] %></h3>
+								<img src=<%= picture[5] %>/>
+								<p class="tweeted"><%= text[5] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[5] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[6] %>/>
+								<h3 class="username"><%= name[6] %></h3>
+								<img src=<%= picture[6] %>/>
+								<p class="tweeted"><%= text[6] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[6] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[7] %>/>
+								<h3 class="username"><%= name[7] %></h3>
+								<img src=<%= picture[7] %>/>
+								<p class="tweeted"><%= text[7] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[7] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[8] %>/>
+								<h3 class="username"><%= name[8] %></h3>
+								<img src=<%= picture[8] %>/>
+								<p class="tweeted"><%= text[8] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[8] %></p>
+							</section>
+							<hr/>
+							<section class="tweetWrapper">
+								<img class="tweetProfImage" src=<%= profPic[9] %>/>
+								<h3 class="username"><%= name[9] %></h3>
+								<img src=<%= picture[9] %>/>
+								<p class="tweeted"><%= text[9] %></p>
+								<p class="feels">Sentiment Score: <%= sentiment[9] %></p>
+							</section>
+							
 						</article>
                     </div>
                 </div>

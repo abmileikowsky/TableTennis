@@ -6,9 +6,9 @@
     "express": "latest",
     "ejs": "latest",
 	"ntwitter": "latest",
-    "sentimental": "latest",
-    "fs": "latest",
-	"mtwitter": "latest"
+    "Sentimental": "latest",
+	"mtwitter": "latest",
+	"Instagram-node-lib":"latest"
   },
   "engines": {
     "node": "0.10.13",
