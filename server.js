@@ -1,7 +1,7 @@
 var express = require('express');
 var ejs = require('ejs');
 var app = express(); 
-var analyze = require('sentimental').analyze;
+var analyze = require('Sentimental').analyze;
 var Instagram = require('instagram-node-lib');
 var Twitter = require('mtwitter');
 
@@ -12,26 +12,11 @@ var twitter = new Twitter({
   access_token_secret: 'u7dZuEyXyoWOWQ7LsWzVAzeMpDkVyRhBx426yHTz3LlXb'
 });
 
-
 Instagram.set('client_id', '371053453f2b4f349e542db37e42a420');
 Instagram.set('client_secret', '5f7678cb2c00403eb72d37d5dbcc81fa');
 
-
- 
-/*twitter.get('search/tweets', {q: 'yolo'}, function(err, item) {
-  console.log(err, item);
-});*/
-
-;
-
 // handle posts in express
 app.use(express.bodyParser());
-
-// use root '/' to access public files folder ie '/index.html'
-//app.use('/', express.static(__dirname + '/public'));
-
-// use Embedded Javascript templating
-//app.engine('html', ejs.renderFile);
 
 app.get('/', function(req, res) {
     
@@ -48,15 +33,23 @@ app.get('/', function(req, res) {
 
 
 // handles form post
-
 app.post('/formPost', function(req, res){
-	//console.log(req.body);
-	
-	
-	
 	if(req.body.source == "twitter")
 		{
-		twitter.get('search/tweets', {q: req.body.hashtag1}, function(err, item) {
+		var geocodeParameter = "";
+		var searchParameter = req.body.hashtag1 + " " + req.body.hashtag2;
+		/*if(navigator)
+		{
+			navigator.geolocation.getCurrentPosition(function(position){
+				geocodeParameter = position.coords.latitude + "," + position.coords.longitude + "," + req.body.distance;
+			});
+		}
+		else
+		{
+			console.log("No Navigator");
+		}*/
+		
+		twitter.get('search/tweets', {q: searchParameter}, function(err, item) {
 			
 			var i = 0
 			var model = {
@@ -87,7 +80,8 @@ app.post('/formPost', function(req, res){
 	}
 	else if(req.body.source == "instagram")
 	{
-		Instagram.tags.recent({ name: req.body.hashtag1, complete: function(data, pagination ) 
+		searchParameter = req.body.hashtag1;
+		Instagram.tags.recent({ name: searchParameter, complete: function(data, pagination ) 
         {
 			var i = 0
 			var model = {
@@ -106,65 +100,12 @@ app.post('/formPost', function(req, res){
 				model.sentiment[i] = analyze(model.text[i]).score;
 				
 			}
-			/*var i = 0
-			var model = {
-				name: [],
-				profPic: [],
-				picture: [],
-				text: [],
-				sentiment: []
-				}
-				for(; i<data.length && i<10;i++)
-				{
-					model.name[i] = data[i].user.username;
-					model.profPic[i] = data[i].user.profile_picture;
-					model.text[i] = data[i].caption;
-					model.picture[i] = data[i].images.standard_resolution.url;
-					model.sentiment[i] = analyze(model.text[i]).score;
-				}
-				
-				for(; i<10;i++)
-				{
-					model.name[i] = '';
-					model.picture[i] = '';
-					model.profPic[i] = '';
-					model.text[i] = '';
-					model.sentiment[i] = 0;
-				}
 			
-			res.render('index2.ejs', model);*/
 			
 			res.render('index2.ejs', model);
                                 
         }
     });   
-		/*var i = 0
-		var model = {
-				name: [],
-				profPic: [],
-				picture: [],
-				text: [],
-				sentiment: []
-			}
-			for(; i<item.statuses.length && i<10;i++)
-			{
-				model.name[i] = item.data[i].user.username;
-				model.profPic[i] = item.data[i].user.profile_picture;
-				model.text[i] = item.data[i].caption;
-				model.picture[i] = item.data[i].images.standard_resolution.url;
-				model.sentiment[i] = analyze(model.text[i]).score;
-			}
-			
-			for(; i<10;i++)
-			{
-				model.name[i] = '';
-				model.picture[i] = '';
-				model.profPic[i] = '';
-				model.text[i] = '';
-				model.sentiment[i] = 0;
-			}
-			
-			res.render('index2.ejs', model);*/
 	}
 	
 	

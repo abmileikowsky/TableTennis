@@ -12,7 +12,7 @@
 
             });
 			
-			function LoadLatestTweets()
+			$( body ).loaded(function()
 			{
 				if(localStorage.latest1)
 				{
@@ -324,7 +324,7 @@
                         <hr>
 						<form action="/formPost" method="post">
 							<input type="text" name="hashtag1" id="Hashtag1" placeholder="#hashtag" required>
-							<!--<input type="text" name="hashtag2" id="Hashtag2" placeholder = "#hashtag" required>-->
+							<input type="text" name="hashtag2" id="Hashtag2" placeholder = "#hashtag" required>
 							<select name="source">
 								<option value="twitter">Twitter</option>
 								<option value="instagram">Instagram</option>
